@@ -1,5 +1,5 @@
-import Header from "./_components/header";
-import SideBar from "./_components/sidebar";
+import Header from "./_components/Header";
+import SideBar from "./_components/_sidebar/Sidebar";
 
 export default function LayoutDasboard({children}: Readonly<{children: React.ReactNode}>) {
     return (
