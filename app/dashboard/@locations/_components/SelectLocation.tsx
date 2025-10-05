@@ -3,7 +3,16 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { Location } from "../../../../entities";
 import { useRouter } from "next/navigation";
 
-export default function SelectLocation({ locations , store }: { locations: Location[] , store? : string | string[] | undefined }) {
+export default function SelectLocation(
+    { locations , store 
+
+    }: 
+    { locations: Location[] , store? : string | string[] | undefined 
+
+    }) 
+    
+    {
+       
     const router = useRouter();
     return (
         <Select placeholder="Selecciona una ubicación" 
@@ -12,7 +21,7 @@ export default function SelectLocation({ locations , store }: { locations: Locat
         }}
             selectedKeys={store && typeof store === 'string' ? [store] : []}
             onChange={((e)=> {
-                if(e.target.value === "") {
+                if(e.target.value === "0" || e.target.value === "") {
                     router.push('/dashboard')
                 } else {
                     router.push(`/dashboard?store=${e.target.value}`);
