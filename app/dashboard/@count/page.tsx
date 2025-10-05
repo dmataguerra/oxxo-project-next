@@ -1,8 +1,16 @@
 import axios from "axios";
+import {cookies, headers} from 'next/headers';
+import { TOKEN_NAME } from "../../../constants";
+
 const CountPage = async () => {
-    const countLocations = await axios.get('http://localhost:4000/locations');
-    console.log(countLocations.data);
-    return  "Hay tantas locations:"+countLocations?.data?.length;
+    const userCookies = cookies();
+    const token = userCookies.get(TOKEN_NAME)?.value
+    const countLocations = await axios.get("http://127.0.0.1:4000/locations", {
+        headers: {
+            Authorization : `Bearer ${token}`
+        }
+    });
+    return "Hay tantas locations:" + countLocations?.data?.length;
 }
 
 
