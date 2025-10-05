@@ -3,8 +3,11 @@ import axios from 'axios';
 import {API_URL} from '@/constants';
 import {cookies} from 'next/headers';
 import {TOKEN_NAME} from '../../../../constants';
+import {Card} from '@nextui-org/react';
+import {CardHeader, CardBody} from '@nextui-org/react';
+import { Divider } from '@nextui-org/react';
 
-export default async function EmployeesLocation({store}: {store: string}) {
+export default async function EmployeesLocation({store}: {store: string | string[] | undefined}) {
     const allCookies = cookies();
     const tokenCookie = allCookies.get(TOKEN_NAME)?.value;
     
@@ -23,6 +26,17 @@ export default async function EmployeesLocation({store}: {store: string}) {
     });
     
     return data.map((employee) => {
-        return <div key={employee.id} className="p-2 border-b">{employee.employeeName}</div>;
+        const fullName = employee.employeeName + ' ' + employee.employeeLastName;
+        return <Card className="mx-10 my-10">
+            <CardHeader>
+                <p className="w-full">Nombre:<b> {fullName}</b></p>
+            </CardHeader>
+            <Divider/>
+            <CardBody>
+                
+                <p className="w-full">Email:<b> {employee.employeeEmail}</b></p>
+                <p className="w-full">Telefono:<b> {employee.employeePhoneNumber}</b></p>
+            </CardBody>
+        </Card>
     });
 }

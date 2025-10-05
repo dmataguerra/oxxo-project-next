@@ -7,6 +7,7 @@ export default function DashboardPage({searchParams}: { searchParams?: { [key : 
     return (
         <>
             <div className="h-full w-4/12 bg-red-100">
+            <div className="h-[90vh] overflow-hidden overflow-y-auto first:mt-0 last:mb-0">
                {storeId ? (
                    <EmployeesLocation store={storeId} />
                ) : (
@@ -14,6 +15,7 @@ export default function DashboardPage({searchParams}: { searchParams?: { [key : 
                        Selecciona una ubicación para ver los empleados
                    </div>
                )}
+            </div>
             </div>
         </>
     )
