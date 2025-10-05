@@ -1,12 +1,20 @@
-export default function DashboardPage(){
+import EmployeesLocation from "./@locations/_components/EmployeesLocation";
+
+export default function DashboardPage({searchParams}: { searchParams?: { [key : string]: string | string[] | undefined } }) {
+    // Solo usar store si es un string válido
+    const storeId = typeof searchParams?.store === 'string' ? searchParams.store : undefined;
+    
     return (
         <>
-        <div className="h-full w-1/2 bg-red-100">
-            <p>Contenido 1</p>
-        </div>
-        <div className="h-full w-2/6 bg-red-100">
-            <p>Contenido 2</p>
-        </div>
-        </>             
+            <div className="h-full w-4/12 bg-red-100">
+               {storeId ? (
+                   <EmployeesLocation store={storeId} />
+               ) : (
+                   <div className="p-4 text-gray-500">
+                       Selecciona una ubicación para ver los empleados
+                   </div>
+               )}
+            </div>
+        </>
     )
 }
