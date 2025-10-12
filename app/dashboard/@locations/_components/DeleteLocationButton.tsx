@@ -4,10 +4,10 @@ export default function DeleteLocationButton({store} : {store : string | string[
     if (!store) return null;
     return (
         <form action={deleteLocation} className="my-4">
+            <input type="hidden" name="deleteValue" value={store} />
             <Button type="submit" color="danger">
                 Borrar tienda
             </Button>
-
         </form>
     )
 }
