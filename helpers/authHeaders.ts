@@ -3,7 +3,6 @@ import { TOKEN_NAME } from '@/constants'
 import { cache } from 'react'
 
 export const authHeaders = cache(() => {
-    console.log("CALLED");
     const tokenCookie = cookies().get(TOKEN_NAME)?.value;
     
     let actualToken = tokenCookie;

@@ -16,7 +16,8 @@ export default async function LocationCard({store} : {store : string | string[] 
    });
     const data = await response.json();
     return (
-        <Card>
+        <div className="w-full">
+        <Card className="w-full">
             <CardHeader>
                 <b>Tienda: {data.locationName}</b>
             </CardHeader>
@@ -25,5 +26,6 @@ export default async function LocationCard({store} : {store : string | string[] 
                 <p>Manager: <Link href={{pathname: '/dashboard/managers'}}><b>{data.manager?.managerFullName}</b></Link></p>
             </CardBody>
         </Card>
+        </div>
     )
 }
