@@ -7,9 +7,10 @@ import {
     useDisclosure,
 } from "@nextui-org/react";
 import { ReactNode, cloneElement, isValidElement } from "react";
-import { LuPenTool } from "react-icons/lu";
+import { LuPencil} from "react-icons/lu";
 
-export default function UpdateLocation({ children }: { children: ReactNode }) {
+export default function UpdateLocation({ children , store }: { children: ReactNode, store : string | string[] | undefined }) {
+    if(!store) return <div/>
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
     const childrenWithProps = isValidElement(children)
@@ -18,12 +19,12 @@ export default function UpdateLocation({ children }: { children: ReactNode }) {
 
     return (
         <>
-            <Button onPress={onOpen} color="primary"><LuPenTool size="20" /></Button>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Button onPress={onOpen} color="primary"><LuPencil size="20" /></Button>
+            <Modal className="gb-orange-400"  isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalBody>
+                            <ModalBody className="p-0">
                                 {childrenWithProps}
                             </ModalBody>
                         </>

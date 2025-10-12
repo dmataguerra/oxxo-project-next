@@ -67,16 +67,14 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
                     </div>
                 )}
                 
-                {/* Si HAY ubicación seleccionada, mostrar el botón de eliminar */}
+                {/* Si HAY ubicación seleccionada, mostrar botones de actualizar y eliminar */}
                 {hasSelectedLocation && (
-                    <DeleteLocationButton store={searchParams.store}/>
-                )}
-
-                {/* Mostrar UpdateLocation SOLO si hay una ubicación seleccionada */}
-                {hasSelectedLocation && (
-                    <UpdateLocation>
-                        <FormUpdateLocation store={searchParams.store} managers={managers} locations={data} />
-                    </UpdateLocation>
+                    <div className="flex gap-4 items-center">
+                        <UpdateLocation store={searchParams.store}>
+                            <FormUpdateLocation store={searchParams.store} managers={managers} locations={data} />
+                        </UpdateLocation>
+                        <DeleteLocationButton store={searchParams.store}/>
+                    </div>
                 )}
             </div>
         </div>
