@@ -7,12 +7,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-    const [submitting, setSubmitting] = useState(false)
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState("");
     const router = useRouter();
-    const handelSubmit = async (e: React.FormEvent) => {
+    const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setSubmitting(true);
+        setError("");
         e.preventDefault();
-        const formData = new FormData(e.target);
+        const formData = new FormData(e.currentTarget);
         let authData: any = {};
         authData.userEmail = formData.get("userEmail");
         authData.userPassword = formData.get("userPassword");
@@ -23,13 +25,20 @@ export default function LoginPage() {
             }, {
                 withCredentials: true,
             });
-            if (response.status === 201) {
+            if (response.status === 201 || response.status === 200) {
                 router.push('/dashboard');
             }
             setSubmitting(false);
-        } catch (error) {
+        } catch (error: any) {
             setSubmitting(false);
-
+            if (error.code === 'ERR_NETWORK') {
+                setError("Error de red: Verifica que el backend esté funcionando y configurado para CORS");
+            } else if (error.response?.status === 401) {
+                setError("Credenciales incorrectas");
+            } else {
+                setError(error.message || "Error al iniciar sesión");
+            }
+            console.error("Error en login:", error);
         }
         return;
     }
@@ -41,6 +50,11 @@ export default function LoginPage() {
             <div className="flex flex-col gap-2 my-4 items-center">
                 <Input label="Email" name="userEmail" type="email" isRequired={true} size="sm" />
                 <Input label="Password" name="userPassword" type="password" isRequired={true} size="sm" />
+                {error && (
+                    <div className="w-full bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded text-sm">
+                        {error}
+                    </div>
+                )}
             </div>
             <div className="flex flex-col gap-2 items-center">
                 <Button color="primary" type="submit" disabled={submitting}>{submitting ? "Enviando..." : "Iniciar Sesión"}</Button>
