@@ -11,7 +11,7 @@ export default function DashboardPage({searchParams}: { searchParams?: { [key : 
                {storeId ? (
                    <EmployeesLocation store={storeId} />
                ) : (
-                   <div className="p-4 text-gray-500">
+                   <div className="p-4 text-gray-500 text-center mt-10">
                        Selecciona una ubicación para ver los empleados
                    </div>
                )}

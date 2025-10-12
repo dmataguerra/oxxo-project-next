@@ -1,19 +1,9 @@
 'use server';
-import axios from "axios";
-import { cookies } from "next/headers";
-import { TOKEN_NAME, API_URL } from "@/constants";
+import {  API_URL } from "@/constants";
+import { authHeaders } from "@/helpers/authHeaders";
+import { revalidateTag } from 'next/cache';
 
 export async function createLocation(formData: FormData) {
-    const tokenCookie = cookies().get(TOKEN_NAME)?.value;
-    if (!tokenCookie) return;
-
-    // Extraer el JWT real del objeto JSON
-    let actualToken = tokenCookie;
-    if (tokenCookie?.startsWith('j:')) {
-        const parsedCookie = JSON.parse(tokenCookie.substring(2));
-        actualToken = parsedCookie.token;
-    }
-
     let location: any = {}
     let locationLating = [0, 0];
 
@@ -34,19 +24,14 @@ export async function createLocation(formData: FormData) {
     }
     location.locationLating = locationLating;
 
-    console.log("Datos a enviar:", location);
-
-    const response = await axios.post(`${API_URL}/locations`, {
-        ...location
-    }, {
+    const response = await fetch(`${API_URL}/locations`, {
+        method: "POST",
+        body: JSON.stringify(location),
         headers: {
-            Authorization: `Bearer ${actualToken}`
-        },
-        withCredentials: true
-    });
-
-    console.log("Location creada exitosamente:", response.data);
-    return { success: true, data: response.data };
-
+            ...authHeaders()
+        }
+    })
+    if(response.status === 201) revalidateTag ("dashboard:locations");
 }
+
 
