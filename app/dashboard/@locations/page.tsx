@@ -7,13 +7,12 @@ import LocationCard from "./_components/LocationCard";
 import { API_URL } from "@/constants";
 import FormNewLocation from "./_components/FormNewLocation";
 import DeleteLocationButton from "./_components/DeleteLocationButton";
+import { authHeaders } from "@/helpers/authHeaders";
 
 const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : string | string[] | undefined}}) => {
-    const userCookies = cookies();
-    const token = userCookies.get(TOKEN_NAME)?.value
     let { data } = await axios.get<Location[]>(`${API_URL}/locations`, {
         headers: {
-            Authorization: `Bearer ${token}`
+           ...authHeaders() 
         }
     });
     data = [

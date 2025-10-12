@@ -4,7 +4,6 @@ import axios from "axios";
 import { API_URL, TOKEN_NAME } from "@/constants";
 import { cookies } from "next/headers";
 import SelectManager from "./SelectManager";
-import DeleteLocation from "@/actions/locations/delete";
 import {Button} from "@nextui-org/react";
 export default async function FormNewLocation({store} : {store:string | string[] | undefined}) {
     if(store) return null;
