@@ -6,6 +6,7 @@ import SelectLocation from "./_components/SelectLocation";
 import LocationCard from "./_components/LocationCard";
 import { API_URL } from "@/constants";
 import FormNewLocation from "./_components/FormNewLocation";
+import DeleteLocationButton from "./_components/DeleteLocationButton";
 
 const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : string | string[] | undefined}}) => {
     const userCookies = cookies();
@@ -24,6 +25,12 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
         },
         ...data
     ]
+    
+    // Verificar si hay una ubicación seleccionada y que no sea "Ninguna" (0)
+    const hasSelectedLocation = searchParams?.store && 
+                                 typeof searchParams.store === 'string' && 
+                                 searchParams.store !== '0';
+    
     return (
     <div className="w-7/12">
         <div className="w-full flex flex-col items-center h-[90vh] bg-red-50">
@@ -35,13 +42,20 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
                 <div className="w-8/12">
                     <LocationCard store={searchParams.store}/>
                 </div>
-                <FormNewLocation />
-
+                
+                {/* Si NO hay ubicación seleccionada, mostrar el formulario */}
+                {!hasSelectedLocation && (
+                    <div className="w-20/12">
+                        <FormNewLocation store={searchParams.store}/>
+                    </div>
+                )}
+                
+                {/* Si HAY ubicación seleccionada, mostrar el botón de eliminar */}
+                {hasSelectedLocation && (
+                    <DeleteLocationButton store={searchParams.store}/>
+                )}
             </div>
-
-            
         </div>
-
     </div>)
 }
 
