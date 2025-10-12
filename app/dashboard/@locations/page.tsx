@@ -1,4 +1,4 @@
-import { Location } from "../../../entities";
+import { Location, Manager } from "../../../entities";
 import SelectLocation from "./_components/SelectLocation";
 import LocationCard from "./_components/LocationCard";
 import { API_URL } from "@/constants";
@@ -34,6 +34,20 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
                                  typeof searchParams.store === 'string' && 
                                  searchParams.store !== '0';
     
+    // Obtener managers solo si hay ubicación seleccionada
+    let managers: Manager[] = [];
+    if (hasSelectedLocation) {
+        const responseManagers = await fetch(`${API_URL}/managers`, {
+            headers: {
+                ...authHeaders()
+            },
+            next: {
+                tags: ["dashboard:managers"]
+            }
+        });
+        managers = await responseManagers.json();
+    }
+    
     return (
     <div className="w-full flex justify-center">
         <div className="w-full max-w-4xl flex flex-col items-center h-[90vh] bg-red-50 px-4">
@@ -61,7 +75,7 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
                 {/* Mostrar UpdateLocation SOLO si hay una ubicación seleccionada */}
                 {hasSelectedLocation && (
                     <UpdateLocation>
-                        <FormUpdateLocation store={searchParams.store}/>
+                        <FormUpdateLocation store={searchParams.store} managers={managers} locations={data} />
                     </UpdateLocation>
                 )}
             </div>
