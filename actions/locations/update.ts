@@ -5,10 +5,10 @@ import { revalidateTag } from 'next/cache';
 import { Location } from "@/entities";
 
 export async function updateLocation(store : string,formData: FormData) {
-    let location: any = {}
+    const location: any = {}
     let locationLating = [0, 0];
 
-    for (const key of formData.keys()) {
+    Array.from(formData.keys()).forEach(key => {
         const value = formData.get(key);
         if (value) {
             if (key === "locationLat") {
@@ -21,7 +21,7 @@ export async function updateLocation(store : string,formData: FormData) {
                 location[key] = formData.get(key);
             }
         }
-    }
+    });
     location.locationLating = locationLating;
 
     const response = await fetch(`${API_URL}/locations/${store}`, {

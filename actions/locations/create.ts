@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 import { Location } from "@/entities";
 
 export async function createLocation(formData: FormData) {
-    let location: any = {}
+    const location: any = {}
     let locationLating = [0, 0];
 
-    for (const key of formData.keys()) {
+    Array.from(formData.keys()).forEach(key => {
         const value = formData.get(key);
         if (value) {
             if (key === "locationLat") {
@@ -23,7 +23,7 @@ export async function createLocation(formData: FormData) {
                 location[key] = formData.get(key);
             }
         }
-    }
+    });
     location.locationLating = locationLating;
 
     const response = await fetch(`${API_URL}/locations`, {
