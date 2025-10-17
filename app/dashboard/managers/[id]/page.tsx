@@ -2,6 +2,7 @@ import { API_URL } from '@/constants';
 import { authHeaders } from '@/helpers/authHeaders';
 import { Manager } from '@/entities';
 import ManagerCard from './_components/ManagerCard';
+import DeleteManagerButton from './_components/DeleteManagerButton';
 
 export default async function ManagerPage(
     { params }: {
@@ -20,8 +21,11 @@ export default async function ManagerPage(
     })
     const data: Manager = await response.json();
     return (
-       <div className="flex-1 p-4 overflow-y-auto bg-red-50">
-        <ManagerCard manager={data}/>
+       <div className="flex-1 overflow-y-auto bg-red-50">
+            <ManagerCard manager={data}/>
+            <div className="flex justify-center gap-4 pb-8">
+                <DeleteManagerButton managerId={data.managerId} />
+            </div>
        </div> 
     )
 }
