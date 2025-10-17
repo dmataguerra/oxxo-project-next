@@ -49,14 +49,14 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
     }
     
     return (
-    <div className="w-full flex justify-center">
-        <div className="w-full max-w-4xl flex flex-col items-center h-[90vh] bg-red-50 px-4">
-            <div className="w-1/2 my-10">
+    <div className="flex-1 p-4 overflow-y-auto">
+        <div className="max-w-4xl mx-auto flex flex-col items-center bg-red-50 px-4 py-6">
+            <div className="w-1/2 mb-6">
                 <SelectLocation locations={data} store={searchParams?.store}/>
 
             </div>
-            <div className="w-full flex flex-col items-center">
-                <div className="w-1/2 mb-4">
+            <div className="w-full flex flex-col items-center gap-4">
+                <div className="w-1/2">
                     <LocationCard store={searchParams.store}/>
                 </div>
                 

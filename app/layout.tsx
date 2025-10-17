@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import Providers from './providers'
 import "./globals.css"
+import 'leaflet/dist/leaflet.css'
 
 export const metadata: Metadata = {
   title: 'Oxxo Frontend',
