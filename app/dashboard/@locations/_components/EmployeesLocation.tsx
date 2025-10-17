@@ -1,23 +1,11 @@
 import { Employee } from '@/entities';
 import { API_URL } from '@/constants';
-import { cookies } from 'next/headers';
-import { TOKEN_NAME } from '../../../../constants';
 import { Card } from '@nextui-org/react';
 import { CardHeader, CardBody } from '@nextui-org/react';
 import { Divider } from '@nextui-org/react';
 import { authHeaders } from '@/helpers/authHeaders';
 
-export default async function EmployeesLocation({ store }: { store: string | string[] | undefined }) {
-    const allCookies = cookies();
-    const tokenCookie = allCookies.get(TOKEN_NAME)?.value;
-
-    // Extraer el JWT real del objeto JSON
-    let actualToken = tokenCookie;
-    if (tokenCookie?.startsWith('j:')) {
-        const parsedCookie = JSON.parse(tokenCookie.substring(2));
-        actualToken = parsedCookie.token;
-    }
-
+export default async function EmployeesLocation({ store }: { store: string | string[] | undefined }) {     
     const response = await fetch(`${API_URL}/employees/locations/${store}`, {
         method: 'GET',
         headers: {

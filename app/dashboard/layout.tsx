@@ -12,12 +12,14 @@ export default function LayoutDasboard({
 }>) {
     const path = usePathname();
     return (
-        <div className="bg-orange-50">
+        <div className="bg-orange-50 h-screen flex flex-col">
             <Header />
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row flex-1 overflow-hidden">
                 <SideBar />
-                {children}
-                {path === '/dashboard' ? locations : null}           
+                <div className="flex-1 overflow-y-auto">
+                    {children}
+                    {path === '/dashboard' ? locations : null}
+                </div>           
             </div>
         </div>
     )
