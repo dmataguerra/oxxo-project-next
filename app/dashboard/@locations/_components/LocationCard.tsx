@@ -27,19 +27,15 @@ export default async function LocationCard({store} : {store : string | string[] 
             </CardHeader>
             <Divider/>
             <CardBody className="flex flex-col gap-4">
-                <p>Manager: <Link href={{pathname: `/dashboard/managers/${data.manager?.managerId}`}}><b>{data.manager?.managerFullName}</b></Link></p>
+                <p>Manager: <Link href={{pathname: `/dashboard/managers/${data.manager?.managerId}`}}><b className="text-blue-600 hover:underline">{data.manager?.managerFullName}</b></Link></p>
                 
                 {data.locationLating && data.locationLating.length === 2 && (
                     <>
                         <p className="text-sm text-gray-600">
                             Coordenadas: {data.locationLating[0]}, {data.locationLating[1]}
                         </p>
-                        <div className="w-full h-[300px] rounded-lg overflow-hidden">
-                            <Map 
-                                key={`${data.locationId}-${data.locationLating[0]}-${data.locationLating[1]}`}
-                                coordinates={data.locationLating} 
-                                locationName={data.locationName} 
-                            />
+                        <div className="w-full h-[300px] rounded-lg overflow-hidden relative z-0">
+                            <Map coordinates={data.locationLating} locationName={data.locationName} />
                         </div>
                     </>
                 )}

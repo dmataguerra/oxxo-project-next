@@ -49,20 +49,20 @@ const LocationsPage = async ({searchParams} : {searchParams : {[key:string] : st
     }
     
     return (
-    <div className="flex-1 p-4 overflow-y-auto">
-        <div className="max-w-4xl mx-auto flex flex-col items-center bg-red-50 px-4 py-6">
-            <div className="w-1/2 mb-6">
+    <div className="flex-1 p-4 overflow-y-auto bg-red-50">
+        <div className="flex flex-col items-center px-4 py-6">
+            <div className="w-[30%] mb-6">
                 <SelectLocation locations={data} store={searchParams?.store}/>
 
             </div>
             <div className="w-full flex flex-col items-center gap-4">
-                <div className="w-1/2">
+                <div className="w-[30%]">
                     <LocationCard store={searchParams.store}/>
                 </div>
                 
                 {/* Si NO hay ubicación seleccionada, mostrar el formulario */}
                 {!hasSelectedLocation && (
-                    <div className="w-1/2">
+                    <div className="w-[30%]">
                         <FormNewLocation store={searchParams.store}/>
                     </div>
                 )}
