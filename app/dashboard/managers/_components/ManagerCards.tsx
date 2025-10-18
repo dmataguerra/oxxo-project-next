@@ -13,6 +13,7 @@ export default async function ManagerCards() {
             ...authHeaders()
         },
         next: {
+            revalidate: 60, // Cache por 60 segundos
             tags: ["dashboard:managers"]
         }
     });
@@ -20,7 +21,7 @@ export default async function ManagerCards() {
 
     return data.map((manager: Manager) => {
         return (
-            <Link href={{ pathname: `/dashboard/managers/${manager.managerId}` }}>
+            <Link key={manager.managerId} href={{ pathname: `/dashboard/managers/${manager.managerId}` }}>
                 <Card className="mx-10 my-10 hover:scale-[105%] hover : bg-blue-100">
                     <CardHeader>
                         <p className="w-full">Nombre:<b> {manager.managerFullName}</b></p>
