@@ -19,6 +19,7 @@ export default function ManagerCard({manager} :  {manager : Manager}) {
                 <CardBody>
                     <p className="w-full">Email: <b>{manager.managerEmail}</b></p>
                     <p className="w-full">Telefono: <b>{manager.managerPhoneNumber}</b></p>
+                    <p className="w-full">Salario: <b>${manager.managerSalary}</b></p>
                     {manager.location && (
                         <>
                             <p className="w-full mt-2">Tienda: <Link href={`/dashboard?store=${manager.location.locationId}`}><b className="text-blue-600 hover:underline">{manager.location.locationName}</b></Link></p>
