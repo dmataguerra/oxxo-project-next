@@ -22,10 +22,12 @@ export default function ManagerCard({manager} :  {manager : Manager}) {
                     {manager.location && (
                         <>
                             <p className="w-full mt-2">Tienda: <Link href={`/dashboard?store=${manager.location.locationId}`}><b className="text-blue-600 hover:underline">{manager.location.locationName}</b></Link></p>
-                            <Map
-                                coordinates={manager.location.locationLating}
-                                locationName={manager.location.locationName}
-                            />
+                            <div className="relative z-0">
+                                <Map
+                                    coordinates={manager.location.locationLating}
+                                    locationName={manager.location.locationName}
+                                />
+                            </div>
                         </>
                     )}
                 </CardBody>
