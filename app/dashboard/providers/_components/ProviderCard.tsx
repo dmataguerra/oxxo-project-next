@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader , Divider} from '@nextui-org/react';
 
 export default function ProviderCard({ provider }: { provider: Provider }) {
     return (
-        <Card className="w-full"> 
+        <Card className="w-full min-w-[350px]"> 
             <CardHeader>
                 <b>{provider.providerName}</b>
             </CardHeader>

@@ -4,7 +4,7 @@ import {Select, SelectItem} from '@nextui-org/react'
 
 export default function SelectProducts({products} : {products: Product[]}){
     const disabledProducts = products
-        .filter((product: Product) => product.provider !== undefined && product.provider !== null)
+        .filter((product: Product) => product.provider && product.provider.providerId)
         .map((product: Product) => product.productId);
     
     return (

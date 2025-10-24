@@ -20,23 +20,19 @@ export default function LoginPage() {
         try {
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
+                headers : {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(authData),
                 credentials: 'include',
             });
+            console.log("Respuesta del servidor:", response.status);
             if (response.status === 201 || response.status === 200) {
                 router.push('/dashboard');
             }
             setSubmitting(false);
-        } catch (error: any) {
+        } catch (e) {
             setSubmitting(false);
-            if (error.code === 'ERR_NETWORK') {
-                setError("Error de red: Verifica que el backend esté funcionando y configurado para CORS");
-            } else if (error.response?.status === 401) {
-                setError("Credenciales incorrectas");
-            } else {
-                setError(error.message || "Error al iniciar sesión");
-            }
-            console.error("Error en login:", error);
         }
         return;
     }

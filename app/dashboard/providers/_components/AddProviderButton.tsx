@@ -2,9 +2,8 @@
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, useDisclosure } from "@nextui-org/react";
 import { LuPlus } from "react-icons/lu";
 import FormNewProvider from "./FormNewProvider";
-import { Product } from "@/entities";
 
-export default function AddProviderButton({ products }: { products: Product[] }) {
+export default function AddProviderButton({ products }: { products: any[] }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -16,7 +15,7 @@ export default function AddProviderButton({ products }: { products: Product[] })
                 <ModalContent>
                     <ModalHeader>Crear Proveedor</ModalHeader>
                     <ModalBody>
-                        <FormNewProvider products={products} />
+                        <FormNewProvider />
                     </ModalBody>
                 </ModalContent>
             </Modal>

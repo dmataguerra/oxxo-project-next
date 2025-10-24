@@ -33,7 +33,6 @@ export default async function EmployeesLocation({ store }: { store: string | str
                     <>
                         <p className="w-full mt-2">Tienda: <b>{employee.location.locationName}</b></p>
                         <Map 
-                            key={`${employee.location.locationId}-${employee.location.locationLating[0]}-${employee.location.locationLating[1]}`}
                             coordinates={employee.location.locationLating} 
                             locationName={employee.location.locationName}
                         />
