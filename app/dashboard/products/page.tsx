@@ -14,8 +14,10 @@ const ProductsPage = async () => {
     });
     const products : Product[] = await (await response).json();
     return (
-        <div>
+        <div className = "h-[90vh] w-full">
+        <div className = "w-3/12">
             <FilteredCards products={products} />
+        </div>
         </div>
     )
 }
