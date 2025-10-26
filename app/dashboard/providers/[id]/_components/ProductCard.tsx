@@ -1,7 +1,7 @@
 import {Card, CardHeader, CardBody, Divider} from "@nextui-org/react"
 import {Product} from "@/entities"
 
-type ProductWithoutProvider = Omit<Product, 'provider'>; // Keep the type definition
+type ProductWithoutProvider = Omit<Product, 'provider'>; 
 
 export default function ProductCard ({product} : {product : ProductWithoutProvider}) {
     return (

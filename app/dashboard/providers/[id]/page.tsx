@@ -4,6 +4,7 @@ import { authHeaders } from "@/helpers/authHeaders"
 import { Provider } from "@/entities"
 import ProductCard from "./_components/ProductCard"
 import { Product } from "@/entities"
+import FormUpdateProvider from "./_components/FormUpdateProvider"
 
 type ProductWithoutProvider = Omit<Product, 'provider'>;
 
@@ -12,6 +13,9 @@ export default async function ProviderPage({ params }: { params: { id: string } 
         headers: {
             ...authHeaders(),
         },
+        next : {
+            tags : [`dashboard:providers:${params.id}`]
+        }
     })
     ).json();
 
@@ -19,8 +23,9 @@ export default async function ProviderPage({ params }: { params: { id: string } 
         <div className="flex flex-col px-10 gap-8 h-[90vh] pt-10">
             {/* Top area: compact provider summary on the left */}
             <div className="w-full flex">
-                <div className="w-full lg:w-1/3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                     <ProviderCard provider={provider} />
+                    <FormUpdateProvider provider={provider} />
                 </div>
             </div>
 
