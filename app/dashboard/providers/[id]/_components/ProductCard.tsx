@@ -5,7 +5,7 @@ type ProductWithoutProvider = Omit<Product, 'provider'>;
 
 export default function ProductCard ({product} : {product : ProductWithoutProvider}) {
     return (
-        <Card className="w-full max-w-xs shadow-md hover:shadow-lg transition-shadow">
+        <Card className="w-full max-w-xs shadow-md hover:shadow-lg hover:scale-105 transition-all">
             <CardHeader className="px-4 py-3">
                 <div className="text-sm font-medium">{product.productName}</div>
             </CardHeader>

@@ -2,6 +2,8 @@ import { Provider } from "@/entities"
 import { Input } from "@nextui-org/react"
 import { Button } from "@nextui-org/react"
 import updateProvider from "@/actions/providers/update"
+import DeleteProvider from "./DeleteProvider";
+import DeleteProviderButton from "./DeleteButton";
 
 export default function FormUpdateProvider({ provider }: { provider: Provider }) {
     const {providerId} = provider;
@@ -13,6 +15,10 @@ export default function FormUpdateProvider({ provider }: { provider: Provider })
             <Input defaultValue={provider.providerEmail} label="Correo" placeholder="business@pepsi.com" name="providerEmail" />
             <Input defaultValue={provider.providerPhoneNumber} label="Numero" placeholder="444XXXXX" name="providerPhoneNumber" />
             <Button color="primary" type="submit" >Actualizar Datos</Button>
+            <DeleteProvider>
+                <h1 className = "text-4xl text-center">¿Estás seguro que deseas eliminar al proveedor <b>{provider.providerName}</b>?</h1>
+            <DeleteProviderButton providerId={providerId} />
+            </DeleteProvider>
         </form>
     )
 }

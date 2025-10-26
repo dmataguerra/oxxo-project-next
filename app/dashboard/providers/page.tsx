@@ -29,8 +29,10 @@ const ProviderPage = async () => {
     const products: Product[] = await responseProducts.json();
     
     return (
-        <div className="flex flex-col h-[90vh] items-end px-10 pt-10 w-full gap-6">
-            <AddProviderButton products={products} />
+        <div className="flex flex-col h-[90vh] px-10 pt-10 w-full gap-6">
+            <div className="flex justify-end">
+                <AddProviderButton products={products} />
+            </div>
             <div className="grid grid-cols-2 gap-6 w-full">
                 {providers.map((provider: Provider) => (
                     <Link key={provider.providerId} href={`/dashboard/providers/${provider.providerId}`} className="hover:scale-105 transition-transform">
