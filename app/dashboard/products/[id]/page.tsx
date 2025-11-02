@@ -3,6 +3,7 @@ import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 import ProductCard from "../_components/ProductCard";
 import UpdateProduct from "./_components/UpdateProduct";
+import DeleteProduct from "./_components/DeleteProduct";
 
 export default async function ProductPage({params} : {params : {id : string}}) {
     const responseProduct = await fetch(`${API_URL}/products/${params.id}`, {
@@ -24,6 +25,7 @@ export default async function ProductPage({params} : {params : {id : string}}) {
         <>
         <ProductCard product={product}/>
         <UpdateProduct product={product} providers={providers} />
+        <DeleteProduct productId={product.productId}/>
         </>
     )
 }
