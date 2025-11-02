@@ -11,6 +11,7 @@ export default function FilteredCards({ products, providers }: { products: Produ
     let [filtered, setFiltered] = useState<string>("");
     const [provider, setProvider] = useState<string>("");
     const [productsList, setProductsList] = useState<Product[]>(products);
+    const [show, setShow] = useState(false);
     useEffect(() => {
         const filteredProducts = products.filter((product) => {
             if (product.productName.toLowerCase().includes(filtered.toLowerCase()) && (!provider || provider === "" ? true : product.provider?.providerId === provider)) {
@@ -20,8 +21,9 @@ export default function FilteredCards({ products, providers }: { products: Produ
             }
         })
         setProductsList(filteredProducts);
+        setShow(true);
     }, [filtered,provider])
-
+   
     return (
         <>
             <div className="max-h-[90vh] min-h-[90vh] overflow-y-auto flex flex-col gap-8 border-r-orange-400 border-r-2 pt-10 px-10" >
@@ -40,7 +42,7 @@ export default function FilteredCards({ products, providers }: { products: Produ
                 }}
                     label="Nombre del producto"
                 />
-                {productsList.map((product) => {
+                {show && productsList.map((product) => {
                     return (
                         <Link className="hover:scale-110 transition-transform" key={product.productId} href={`/dashboard/products/${product.productId}`}>
                             <ProductCard product={product} />

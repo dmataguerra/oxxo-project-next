@@ -26,7 +26,6 @@ export default function LoginPage() {
                 body: JSON.stringify(authData),
                 credentials: 'include',
             });
-            console.log("Respuesta del servidor:", response.status);
             if (response.status === 201 || response.status === 200) {
                 router.push('/dashboard');
             }

@@ -1,6 +1,6 @@
 import {Card, CardHeader, CardBody, Divider} from "@nextui-org/react"
 import {Product} from "@/entities"
-
+import Link from "next/link";
 
 export default function ProductCard ({product} : {product : Product}) {
     return (
@@ -12,7 +12,13 @@ export default function ProductCard ({product} : {product : Product}) {
             <CardBody className="px-4 py-3 text-sm">
                 <p className="text-xs">Nombre del producto: <span className="font-bold">{product.productName}</span></p>
                 <p className="mt-2 text-xs">Precio del producto: <span className="font-bold">{product.price}</span></p>
-                <p>Proveedor : <b>{product.provider?.providerName ?? 'Sin proveedor'}</b></p>
+                <p>Proveedor : {product.provider ? (
+                    <Link className="font-bold underline" href={`/dashboard/providers/${product.provider.providerId}`}>
+                        {product.provider.providerName}
+                    </Link>
+                ) : (
+                    <span className="font-bold">Sin proveedor</span>
+                )}</p>
             </CardBody>
         </Card>
     )
