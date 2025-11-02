@@ -4,7 +4,7 @@ import { Product } from "@/entities";
 import FilteredCards from "./_components/FilteredCards";
 
 const ProductsPage = async () => {
-    const response  = fetch(`${API_URL}/products`, {
+    const responseProducts  = fetch(`${API_URL}/products`, {
         headers: {
             ...authHeaders(),
         },
@@ -12,11 +12,20 @@ const ProductsPage = async () => {
             tags: ["dashboard:products"]
         }
     });
-    const products : Product[] = await (await response).json();
+    const products : Product[] = await (await responseProducts).json();
+    const responseProviders = await fetch(`${API_URL}/providers`, {
+        headers: {
+            ...authHeaders(),
+        },
+        next: {
+            tags: ["dashboard:providers"]
+        }
+    })
+    const providers = await responseProviders.json();
     return (
         <div className = "h-[90vh] w-full">
         <div className = "w-3/12">
-            <FilteredCards products={products} />
+            <FilteredCards products={products} providers={providers}/>
         </div>
         </div>
     )

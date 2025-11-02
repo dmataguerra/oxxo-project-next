@@ -12,6 +12,7 @@ export default function ProductCard ({product} : {product : Product}) {
             <CardBody className="px-4 py-3 text-sm">
                 <p className="text-xs">Nombre del producto: <span className="font-bold">{product.productName}</span></p>
                 <p className="mt-2 text-xs">Precio del producto: <span className="font-bold">{product.price}</span></p>
+                <p>Proveedor : <b>{product.provider?.providerName ?? 'Sin proveedor'}</b></p>
             </CardBody>
         </Card>
     )
