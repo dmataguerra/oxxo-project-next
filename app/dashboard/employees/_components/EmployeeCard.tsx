@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function EmployeeCard ({employee} : {employee : Employee}) {
     return (
         <div className="w-[360px]">
-            <Card className="w-full relative h-72">
+            <Card className="w-full relative h-72 bg-orange-50">
                 <CardHeader className="w-full">
                     <p className="w-full font-bold text-xl">{employee.employeeName + " "+ employee.employeeLastName}</p>
                 </CardHeader>
