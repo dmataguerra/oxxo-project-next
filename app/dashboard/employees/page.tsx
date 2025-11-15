@@ -3,6 +3,8 @@ import { authHeaders } from "@/helpers/authHeaders";
 import { Employee } from "@/entities";
 import EmployeeCard from "./_components/EmployeeCard";
 import EmployeePhotoCard from "./_components/EmployeePhotoCard";
+import FormCreateEmployee from "./_components/FormCreateEmployee";
+import CreateEmployee from "./_components/CreateEmployee";
 
 const EmployeesPage = async () => {
     const response = await fetch(`${API_URL}/employees`, {
@@ -20,6 +22,11 @@ const EmployeesPage = async () => {
                 return <EmployeeCard key={employee.id} employee={employee}/>;
             }
         })}
+        <div className="absolute bottom-10 right-10">
+            <CreateEmployee>
+                <FormCreateEmployee />
+            </CreateEmployee>
+        </div>
        </div> 
     )
 }
