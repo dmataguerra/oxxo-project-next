@@ -4,7 +4,7 @@ import createEmployee from "@/actions/employees/create";
 
 export default function FormCreateEmployee() {
     return (
-        <form action={createEmployee} encType="multipart/form-data" className="flex flex-col gap-2 p-8 bg-orange-500 h-fit rounded-md m-2" onSubmit={e => {console.log('Form submit event', e);}}>
+        <form action={createEmployee} encType="multipart/form-data" className="flex flex-col gap-2 p-8 bg-orange-500 h-fit rounded-md m-2">
             <Input isRequired name="employeeName" placeholder="David" />
             <Input isRequired name="employeeLastName" placeholder="Mata Guerra" />
             <Input isRequired name="employeeEmail" placeholder="dmataguerra@gmail.com" />
