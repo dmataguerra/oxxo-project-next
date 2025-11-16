@@ -3,6 +3,7 @@ import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
 import { Manager } from "@/entities";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import CreateUserManager from './CreateUserManager';
 
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
@@ -12,8 +13,11 @@ export default function ManagerCard({manager} :  {manager : Manager}) {
     <div className="flex justify-center p-8">
         <div className="w-[50%]">
             <Card className="w-full">
-                <CardHeader className="w-full">
+                <CardHeader className="w-full flex items-center justify-between">
                     <p className="w-full">Nombre: <b>{manager.managerFullName}</b></p>
+                    <div className="ml-2">
+                        <CreateUserManager manager={manager} />
+                    </div>
                 </CardHeader>
                 <Divider />
                 <CardBody>
