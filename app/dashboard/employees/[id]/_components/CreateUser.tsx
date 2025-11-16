@@ -7,9 +7,9 @@ import {
     useDisclosure,
 } from "@nextui-org/react";
 import { ReactNode, cloneElement, isValidElement } from "react";
-import { LuPlus } from "react-icons/lu";
+import { Image } from "@nextui-org/react";
 
-export default function CreateEmployee({ children , icon}: { children: ReactNode , icon?: ReactNode}) {
+export default function CreateEmployee({ children , icon, photo}: { children: ReactNode , icon: ReactNode, photo: string | undefined}) {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
     const childrenWithProps = isValidElement(children)
@@ -18,7 +18,7 @@ export default function CreateEmployee({ children , icon}: { children: ReactNode
 
     return (
         <>
-            <Button onPress={onOpen} color="primary">{icon ?? <LuPlus size="20" />}</Button>
+            <Image src={photo} onClick={onOpen} isZoomed className="object-cover" classNames={{img:"size-60",}}/>
             <Modal className="bg-orange-400" isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (

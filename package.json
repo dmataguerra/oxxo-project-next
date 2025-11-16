@@ -12,6 +12,7 @@
     "@nextui-org/react": "^2.6.11",
     "@types/leaflet": "^1.9.21",
     "framer-motion": "^12.23.22",
+    "generate-password": "^1.7.1",
     "leaflet": "^1.9.4",
     "next": "14.0.0",
     "react": "^18",
