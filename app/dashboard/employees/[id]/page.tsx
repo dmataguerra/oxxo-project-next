@@ -1,6 +1,6 @@
 import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
-import { Employee } from "@/entities";
+import { Employee, Location } from "@/entities";
 import FormUpdateEmployee from "./_components/FormUpdateEmployee";
 import EmployeeDataCard from "./_components/EmployeeDataCard";
 
@@ -11,10 +11,16 @@ export default async function EmployeePage({ params }: { params: { id: string } 
         },
     });
     const employee: Employee = await response.json();
+    const responseLocations = await fetch(`${API_URL}/locations`, {
+        headers: {
+            ...authHeaders(),
+        },
+    });
+    const stores: Location[] = await responseLocations.json();
     return (
         <div className="w-full h-[90vh] flex flex-row">
             <EmployeeDataCard employee={employee} /> 
-            <FormUpdateEmployee employee={employee} />
+            <FormUpdateEmployee employee={employee} stores={stores} />
         </div>
     );
 }

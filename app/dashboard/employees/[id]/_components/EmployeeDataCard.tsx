@@ -2,6 +2,7 @@
 import { Employee } from "@/entities";
 import { Image } from "@nextui-org/react";
 import Link from "next/link";
+import DeleteEmployee from "./DeleteEmployee";
 
 export default function EmployeeDataCard({ employee }: { employee: Employee }) {
     return (
@@ -12,9 +13,12 @@ export default function EmployeeDataCard({ employee }: { employee: Employee }) {
                     <h1>{employee.employeeEmail}</h1>
                     <h1>{employee.employeePhoneNumber}</h1>
                 </div>
-                <Link className="underline" href={{ pathname: `/dashboard`, query: { store: String(employee.location?.locationId) } }}>
-                    {employee.location?.locationName}
-                </Link>
+                <div className="flex flex-col items-start gap-2">
+                    <Link className="underline" href={{ pathname: `/dashboard`, query: { store: String(employee.location?.locationId) } }}>
+                        {employee.location?.locationName}
+                    </Link>
+                    <DeleteEmployee employeeId={employee.id} />
+                </div>
             </div>
             <div className="h-full py-20 w-1 bg-zinc-400 mx-5" />
             <Image src={employee.employeePhoto}
