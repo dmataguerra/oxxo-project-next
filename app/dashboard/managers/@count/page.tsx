@@ -2,6 +2,7 @@ import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Manager } from "@/entities";
 import { Card , CardBody, CardHeader , Divider} from "@nextui-org/react";
+import AddManagerButton from "../_components/AddManagerButton";
 
 export default async function CountManagersPage() {
     const response = await fetch(`${API_URL}/managers`, {
@@ -41,6 +42,10 @@ export default async function CountManagersPage() {
                         <p className="w-full">El salario promedio es <b>${averageSalary}</b></p>
                     </CardBody>
                 </Card>
+                {/* Add create button centered below stats */}
+                <div className="flex justify-center mt-4">
+                    <AddManagerButton />
+                </div>
             </div>
         </div>
     )
